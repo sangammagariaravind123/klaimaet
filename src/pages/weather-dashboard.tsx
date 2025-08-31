@@ -1,7 +1,7 @@
 // import {
-//   useForecastQuery,
-//   useReverseGeocodeQuery,
-//   useWeatherQuery,
+// useForecastQuery,
+// useReverseGeocodeQuery,
+// useWeatherQuery,
 // } from "@/hooks/use-weather";
 // import { CurrentWeather } from "../components/current-weather";
 // import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
