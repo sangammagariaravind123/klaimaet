@@ -12,8 +12,8 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <Layout>
           <Routes>
-            <Route path="/" element={WeatherDashboard} />
-            <Route path="/city/:CityName" element={CityPage} />
+            <Route path="/" element={<WeatherDashboard />} />
+            <Route path="/city/:CityName" element={<CityPage />} />
           </Routes>
         </Layout>
       </ThemeProvider>
