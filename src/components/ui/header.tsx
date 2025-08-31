@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CitySearch } from "./city-search";
+// import { CitySearch } from "./city-search";
 import { ThemeToggle } from "./theme-toggle";
 import { useTheme } from "@/context/theme-provider";
 
@@ -18,7 +18,7 @@ export function Header() {
         </Link>
 
         <div className="flex gap-4">
-          <CitySearch />
+          {/* <CitySearch /> */}
           <ThemeToggle />
         </div>
       </div>
