@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { Header } from "./ui/header";
+import { Header } from "./header";
 
 export function Layout({ children }: PropsWithChildren) {
   return (
