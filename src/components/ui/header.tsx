@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CitySearch } from "./city-search";
-import { ThemeToggle } from "./theme-toggle";
+// import { CitySearch } from "./city-search";
+import { ThemeToggle } from "../theme-toggle";
 import { useTheme } from "@/context/theme-provider";
 
 export function Header() {
@@ -11,18 +11,14 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to={"/"}>
           <img
-<<<<<<< HEAD
-            src={theme === "dark" ? "/logo.png" : "/logo.png"}
-=======
             src={theme === "dark" ? "/logo.png" : "/logo2.png"}
->>>>>>> 8ecad6747ca7603799d789bcb0cf4ca98e5d4785
             alt="Klimate logo"
             className="h-14"
           />
         </Link>
 
         <div className="flex gap-4">
-          <CitySearch />
+          {/* <CitySearch /> */}
           <ThemeToggle />
         </div>
       </div>
