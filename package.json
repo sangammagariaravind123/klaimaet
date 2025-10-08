@@ -1,9 +1,6 @@
 {
   "name": "weather-app",
-<<<<<<< HEAD
   "homepage": "https://sangammagariaravind123.github.io/klaimaet",
-=======
->>>>>>> 8ecad6747ca7603799d789bcb0cf4ca98e5d4785
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,13 +8,9 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-<<<<<<< HEAD
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -f -r https://github.com/sangammagariaravind123/klaimaet"
-=======
-    "preview": "vite preview"
->>>>>>> 8ecad6747ca7603799d789bcb0cf4ca98e5d4785
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
@@ -53,10 +46,7 @@
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
-<<<<<<< HEAD
     "gh-pages": "^6.3.0",
-=======
->>>>>>> 8ecad6747ca7603799d789bcb0cf4ca98e5d4785
     "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
