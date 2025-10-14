@@ -56,7 +56,6 @@ pipeline {
                 }
             }
             post {
-                agent { label 'win' }
                 always {
                     cleanWs()
                 }
