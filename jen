@@ -1,15 +1,25 @@
 pipeline {
-    agent any
+    agent none
+    options { timestamps(); timeout(time: 15, unit: 'MINUTES') }
     environment {
         VITE_BUILD_DIR = 'dist'
     }
     stages {
-        stage('Checkout') {
-            steps { checkout scm }
+        stage('Where am I (Controller)') {
+            agent { label 'built-in' }
+            steps {
+                echo 'Running on CONTROLLER'
+                echo "NODE = ${env.NODE_NAME}"
+                echo "WORKSPACE = ${env.WORKSPACE}"
+            }
         }
         stage('Install Dependencies') {
             steps {
-                bat 'npm ci'
+                bat '''
+                echo Running on AGENT: %COMPUTERNAME%
+                if exist out rmdir /s /q build
+                npm ci
+                '''
             }
         }
         stage('Build & Test') {
@@ -28,7 +38,11 @@ pipeline {
         stage('Deploy (Example)') {
             steps {
                 script {
-                    bat 'npm run deploy'
+                    bat '''
+                    git config --global user.name "Aravind Chandra"
+                    git config --global user.email "sangammagariaravind123@gmail.com"
+                    npm run deploy
+                    '''
                 }
             }
         }

@@ -1,0 +1,54 @@
+pipeline {
+  agent none
+  options { timestamps(); timeout(time: 15, unit: 'MINUTES') }
+
+  stages {
+    /* 1) WHERE AM I — run on Controller (built-in) */
+    stage('Where am I (Controller)') {
+      agent { label 'built-in' }
+      steps {
+        echo 'Running on CONTROLLER'
+        echo "NODE = ${env.NODE_NAME}"
+        echo "WORKSPACE = ${env.WORKSPACE}"
+      }
+    }
+
+    /* 2) BUILD & RUN — on Windows Agent (label: win) */
+    stage('Build on Windows Agent') {
+      agent { label 'win' }
+      steps {
+        bat '''
+        echo Running on AGENT: %COMPUTERNAME%
+        if exist out rmdir /s /q out
+        mkdir out
+        javac -source 1.8 -target 1.8 src/*.java -d out
+        java -cp out src.Hey
+        echo Build_OK > artifact.txt
+        '''
+      }
+      post {
+        always {
+          archiveArtifacts artifacts: 'artifact.txt, out/**', allowEmptyArchive: false
+        }
+      }
+    }
+
+    /* 3) PARALLEL DEMO — Controller vs Agent at the same time */
+    stage('Parallel: Controller vs Agent') {
+      parallel {
+        stage('Controller lane') {
+          agent { label 'built-in' }
+          steps {
+            echo 'hello from CONTROLLER in parallel'
+          }
+        }
+        stage('Agent lane') {
+          agent { label 'win' }
+          steps {
+            bat 'echo Hello from WINDOWS AGENT in parallel'
+          }
+        }
+      }
+    }
+  }
+}
