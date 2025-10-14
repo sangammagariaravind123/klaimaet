@@ -5,6 +5,12 @@ pipeline {
         VITE_BUILD_DIR = 'dist'
     }
     stages {
+        stage('Checkout') {
+            agent { label 'built-in' }
+            steps {
+                checkout scm
+            }
+        }
         stage('Where am I (Controller)') {
             agent { label 'built-in' }
             steps {
