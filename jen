@@ -55,12 +55,12 @@ pipeline {
                     '''
                 }
             }
-        }
-    }
-    post {
-        agent { label 'win' }
-        always {
-            cleanWs()
+            post {
+                agent { label 'win' }
+                always {
+                    cleanWs()
+                }
+            }
         }
     }
 }
