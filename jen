@@ -14,6 +14,7 @@ pipeline {
             }
         }
         stage('Install Dependencies') {
+            agent { label 'win' }
             steps {
                 bat '''
                 echo Running on AGENT: %COMPUTERNAME%
@@ -23,6 +24,7 @@ pipeline {
             }
         }
         stage('Build & Test') {
+            agent { label 'win' }
             steps {
                 script {
                     bat 'npm run build'
@@ -30,12 +32,14 @@ pipeline {
             }
         }
         stage('Archive Artifacts') {
+            agent { label 'win' }
             steps {
                 archiveArtifacts artifacts: "${VITE_BUILD_DIR}/**", fingerprint: true
                 echo "Vite build artifacts saved from ${VITE_BUILD_DIR}."
             }
         }
         stage('Deploy (Example)') {
+            agent { label 'win' }
             steps {
                 script {
                     bat '''
