@@ -1,0 +1,32 @@
+# This is a simple deployment for your React app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-app
+spec:
+  replicas: 2  # Run 2 copies of your app
+  selector:
+    matchLabels:
+      app: weather-app
+  template:
+    metadata:
+      labels:
+        app: weather-app
+    spec:
+      containers:
+      - name: weather-app
+        image: weather-app:latest  # You'll replace this with your image
+        ports:
+        - containerPort: 80
+---
+# This service makes your app accessible
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather-app
+spec:
+  type: LoadBalancer  # This makes your app accessible from outside
+  ports:
+  - port: 80
+  selector:
+    app: weather-app
