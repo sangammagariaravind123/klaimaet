@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: klaimaet-config
-data:
-  # Example environment variables consumed at build-time or runtime via small wrapper
-  VITE_API_BASE_URL: "https://api.example.com"
