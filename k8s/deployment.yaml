@@ -1,10 +1,9 @@
-# This is a simple deployment for your React app
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: weather-app
 spec:
-  replicas: 2  # Run 2 copies of your app
+  replicas: 2
   selector:
     matchLabels:
       app: weather-app
@@ -15,18 +14,24 @@ spec:
     spec:
       containers:
       - name: weather-app
-        image: weather-app:latest  # You'll replace this with your image
+        image: aravindchandra/klaimaet:latest
         ports:
         - containerPort: 80
+        env:
+        - name: VITE_OPENWEATHER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: weather-app-secrets
+              key: openweather-api-key
 ---
-# This service makes your app accessible
 apiVersion: v1
 kind: Service
 metadata:
   name: weather-app
 spec:
-  type: LoadBalancer  # This makes your app accessible from outside
+  type: LoadBalancer
   ports:
   - port: 80
+    targetPort: 80
   selector:
     app: weather-app
